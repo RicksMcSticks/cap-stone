@@ -86,40 +86,7 @@ const displayBears = (arr) => {
 }
 
 
-const chooseBear = (id) => {
-    if (player.length === 1) {
-      return alert("You can only choose one bear!");
-    }
-    let index = choices.findIndex((bear) => bear.id === id);
-    player.push(choices[index]);
-    choices.splice(index, 1);
-    renderChoices();
-    renderPlayer();
-    if (player.length === 1) {
-      duelBtn.classList.remove("hide");
-    }
-  };
-
-  const duel = () => {
-    resultsText.textContent = "Dueling...";
-    duelBtn.classList.add("hide");
-    choicesDiv.innerHTML = "";
-    chooseHeader.classList.add("hide");
-    renderCompDuo();
-    document
-      .querySelectorAll(".bear-btn")
-      .forEach((btn) => btn.classList.add("hide"));
-    setTimeout(() => {
-      axios.post("/api/duel", { comp, player }).then(({ data }) => {
-        resultsText.textContent = data;
-        playAgainBtn.classList.remove("hide");
-        getPlayerStats();
-      });
-    }, 1500);
-  };
-
 form.addEventListener('submit', submitHandler)
-duelBtn.addEventListener("click", duel);
 
 
 getAllBears()
