@@ -24,6 +24,16 @@ const deleteBear = (id) => {
     })
 }
 
+const updateBear = (id, type) => {
+    axios.put(`${baseURL}/${id}`, {type})
+        .then((res) => {
+            displayBears(res.data)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+
 const createBear = (body) => {
     axios.post(baseURL, body)
     .then((res) => {
@@ -68,7 +78,11 @@ const createBearCard = (bear) => {
     bearCard.innerHTML = `
     <img alt='bear cover image' src=${bear.imageURL} class="bear-cover-image"/>
     <h3>${bear.bearType}</h3>
+    <div class="btns-container">
+    <button onclick="updateBear(${bear.id}, 'minus')">-</button>
     <p class="bear-attack">Attack: ${bear.attack} damage</p>
+    <button onclick="updateBear(${bear.id}, 'plus')">+</button>
+    </div>
     <p class="bear-health">Health: ${bear.health}</p>
     <button onclick="deleteBear(${bear.id})">delete</button>
     `

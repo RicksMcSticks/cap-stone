@@ -115,5 +115,16 @@
     border-right-color: red;
   } 
 
+  .btns-container {
+    width: 100%; 
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+  }
+  
+  .btns-container > button {
+    width: 40px;
+  }
+
 
   
